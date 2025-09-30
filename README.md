@@ -2,6 +2,9 @@
 
 A GitHub Action that sends reminders to Mattermost about pending Zammad tickets.
 
+<img width="778" height="425" alt="image" src="https://github.com/user-attachments/assets/25aeeb4e-da09-4bc4-a4bc-f7811d5d8e52" />
+
+
 ## Features
 
 - 📊 Counts new unassigned tickets in Zammad
