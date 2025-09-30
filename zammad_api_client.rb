@@ -1,8 +1,8 @@
 class ZammadApiClient
   def self.connection
     @connection ||= Faraday.new(
-      url: ENV["ZAMMAD_API_URL"].freeze,
-      headers: { Authorization: "Token token=#{ENV['ZAMMAD_API_TOKEN']}" }
+      url: ENV["INPUT_ZAMMAD_API_URL"].freeze,
+      headers: { Authorization: "Token token=#{ENV['INPUT_ZAMMAD_API_TOKEN']}" }
     ) do |builder|
       builder.request :json
       builder.response :json

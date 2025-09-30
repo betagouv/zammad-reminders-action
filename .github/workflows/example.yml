@@ -1,0 +1,19 @@
+# Example workflow file for using the Zammad Reminders Action
+# Copy this to your repository's .github/workflows/ directory
+# and set up the required secrets in your repository settings
+
+name: Zammad Daily Reminders
+on:
+  workflow_dispatch:
+
+jobs:
+  zammad-reminders:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Zammad reminders
+        uses: betagouv/zammad-reminders-action@main
+        with:
+          zammad-api-url: ${{ secrets.ZAMMAD_API_URL }}
+          zammad-api-token: ${{ secrets.ZAMMAD_API_TOKEN }}
+          mattermost-webhook-url: ${{ secrets.MATTERMOST_WEBHOOK_URL }}
+          mattermost-channel: ${{ secrets.MATTERMOST_CHANNEL }}

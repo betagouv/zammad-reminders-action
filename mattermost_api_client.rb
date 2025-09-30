@@ -25,6 +25,6 @@ class MattermostApiClient
   end
 
   def self.webhook_uri
-    @webhook_uri ||= URI.parse(ENV["MATTERMOST_WEBHOOK_URL"])
+    @webhook_uri ||= URI.parse(ENV["INPUT_MATTERMOST_WEBHOOK_URL"])
   end
 end

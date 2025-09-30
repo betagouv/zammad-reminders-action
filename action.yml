@@ -1,0 +1,18 @@
+name: "Zammad Reminders"
+description: "Sends Zammad ticket reminders to a Mattermost channel."
+inputs:
+  zammad-api-url:
+    description: "The URL of the Zammad API."
+    required: true
+  zammad-api-token:
+    description: "The token for the Zammad API."
+    required: true
+  mattermost-webhook-url:
+    description: "The URL of the Mattermost webhook."
+    required: true
+  mattermost-channel:
+    description: "The Mattermost channel to send the message to."
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"

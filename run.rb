@@ -2,8 +2,17 @@ require "dotenv/load"
 require_relative "mattermost_api_client"
 require_relative "zammad_api_client"
 
-%w[ZAMMAD_API_URL ZAMMAD_API_TOKEN MATTERMOST_WEBHOOK_URL MATTERMOST_CHANNEL].each do |var|
-  raise "Environment variable #{var} is not set" if ENV[var].nil? || ENV[var].empty?
+required_env_vars = %w[
+  INPUT_ZAMMAD_API_URL
+  INPUT_ZAMMAD_API_TOKEN
+  INPUT_MATTERMOST_WEBHOOK_URL
+  INPUT_MATTERMOST_CHANNEL
+]
+
+missing_vars = required_env_vars.select { |var| ENV[var].nil? || ENV[var].empty? }
+unless missing_vars.empty?
+  puts "❌ Error: Missing required environment variables: #{missing_vars.join(', ')}"
+  exit 1
 end
 
 puts "Fetching data from Zammad…"
@@ -25,9 +34,9 @@ end
 puts "Done building message."
 puts
 
-puts "Sending message to Mattermost channel #{ENV['MATTERMOST_CHANNEL']}…"
+puts "Sending message to Mattermost channel #{ENV['INPUT_MATTERMOST_CHANNEL']}…"
 MattermostApiClient.send_message(
-  channel: ENV["MATTERMOST_CHANNEL"],
+  channel: ENV["INPUT_MATTERMOST_CHANNEL"],
   text: message
 )
 puts "Done sending message to Mattermost."
